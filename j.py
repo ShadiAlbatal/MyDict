@@ -1,11 +1,10 @@
-from tkinter import *
-from PIL import Image, ImageTk
+from Tkinter import *
 
 class Window(Frame):
 
     def __init__(self, master=None):
-        
-        Frame.__init__(self, master)   
+
+        Frame.__init__(self, master)
 
         self.master = master
 
@@ -28,76 +27,51 @@ class Window(Frame):
 
         edit = Menu(menu)
 
-        edit.add_command(label="fr AR to SW", command=self.AD)
-        edit.add_command(label="fr SW to AR", command=self.SD)
+        edit.add_command(label="fr AR to SW", command=self.A2S)
+        edit.add_command(label="fr SW to AR", command="self.S2A")
 
-        menu.add_cascade(label="option", menu=edit)  
-       
-        load = Image.open('D:\myPy\dicto\logo.gif')
-        render = ImageTk.PhotoImage(load)
-
-        # labels can be text or images
-        img = Label(self.master, image=render)
-        img.image = render
-        img.grid(row=0, column=0, sticky=W)
+        menu.add_cascade(label="option", menu=edit)
 
         Label(self.master, text="enter word:", bg="white", fg="black", font= "none 12 bold") .grid(row=6, column=0, sticky=W)
 
-        textentry= Entry(self.master, width=20, bg="white") .grid(row=7, column=0, sticky=W)
+        self.textentry= Entry(self.master, width=20, bg="white")
+        self.textentry.grid(row=7, column=0, sticky=W)
 
-        Button(self.master, text="Translate", width=6, command="") .grid(row=8, column=0, sticky=W)
+        Button(self.master, text="Translate", width=6, command=self.BsmALLAH) .grid(row=8, column=0, sticky=W)
 
-        Label (self.master, text="Meaning:", bg="white", fg="black", font= "none 12 bold") .grid(row=9, column=0, sticky=W)   
-        
-        result= Text(self.master, width=75, height=6, background="white") .grid(row=10, column=0, columnspan=1, sticky=W)
-        
-    def AD(self):
-        ArDict= {
-            'أ':'a',
-            'ب':'b, B',
-            'ت': 't, T',
-        }
-        return True
-        
-    def SD(self):
-        SwDict= {
-            'e': "ياء",
-            'f': "فاء",
-            's': "سين",
-        }
-        return True
-        
-    def StA():
-        textentry= textentry.get()
-        result.delete(0.0, END)
-        try:
-            Meaning= SwDict[textentry]
-        except:
-            Meaning= "finns inte"
-        result.insert(END, Meaning)
-        
-    def A2S():
-        textentry= textentry.get()
-        result.delete(0.0, END)
-        try:
-            Meaning= ArDict[textentry]
-        except:
-            Meaning= "رب لك الحمد"
-        result.insert(END, Meaning)
-            
-    def submit():
-        if AD is True:
-            S2A()
-        else:
-            A2S()
+        Label(self.master, text="Meaning:", bg="white", fg="black", font= "none 12 bold") .grid(row=9, column=0, sticky=W)
+
+        self.result= Text(self.master, width=75, height=6, background="white")
+        self.result.grid(row=10, column=0, columnspan=1, sticky=W)
+
 
     def A2S(self):
+        self.ArDict= {
+            'ar':'a',
+            'ar':'b, B',
+            'ar': 't, T'
+        }
         print("BMLLH")
-        return True
 
     def S2A(self):
         print("LHMLH")
-        return True
+        SwDict= {
+            'e': "AR",
+            'f': "AR",
+            's': "AR",
+        }
+        print("LHMDL")
+
+    def BsmALLAH(self):
+        print("LHKBR")
+
+        textentry= self.textentry.get()
+        self.result.delete(0.0, END)
+        try:
+            Meaning= ArDict[textentry]
+        except:
+            Meaning= "not found"
+        self.result.insert(END, Meaning)
 
     def exit(self):
         exit()
@@ -111,5 +85,5 @@ root.geometry("400x300")
 app = Window(root)
 
 
-#mainloop 
-root.mainloop()  
+#mainloop
+root.mainloop()
